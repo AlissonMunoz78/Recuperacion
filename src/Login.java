@@ -1,3 +1,7 @@
+// Richard Padilla
+//
+//
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,9 +19,16 @@ public class Login {
         iniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                // Esta es la conexion a la nube de la base de datos
                 String url = "jdbc:mysql://u10rnbplu9w30o4e:rO6gsFKOdP4zWEVECj2s@bi4wakzvsov6sbbmptih-mysql.services.clever-cloud.com:3306/bi4wakzvsov6sbbmptih";
                 String user = "u10rnbplu9w30o4e";
                 String password = "rO6gsFKOdP4zWEVECj2s";
+
+
+
+
+
 
 
                 JFrame frame = new JFrame("Alisson");
