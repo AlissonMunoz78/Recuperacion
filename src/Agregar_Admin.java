@@ -15,6 +15,7 @@ public class Agregar_Admin extends Conexion {
     public JButton agregarButton;
     public JButton regresarButton;
     public JPanel agregarsito;
+    public JTabbedPane tabbedPane1;
 
     public Agregar_Admin() {
         agregarButton.addActionListener(new ActionListener() {

@@ -12,7 +12,7 @@ public class menu_admin extends Conexion{
         visulizarProductosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Visualizar Administrador");
+                JFrame frame = new JFrame("Visualizar Productos");
                 frame.setContentPane(new Login().loginsito);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(500, 300);
