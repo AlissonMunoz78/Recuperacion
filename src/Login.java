@@ -20,8 +20,8 @@ public class Login extends Conexion {
     public Login() {
 
         // Opciones del JComboBox para el modo de registro
-        comboBox1.addItem("Administrador");
-        comboBox1.addItem("Usuario");
+        comboBox1.addItem("administrador");
+        comboBox1.addItem("usuario");
 
         iniciarButton.addActionListener(new ActionListener() {
             @Override
@@ -33,10 +33,11 @@ public class Login extends Conexion {
 
                 try (Connection conn = conectar()) { // Usamos el método conectar() de la clase Conexion
 
-                    String sql = "SELECT rol FROM Usuarios WHERE nombre = ? AND password = ?";
+                    String sql = "SELECT rol FROM Usuarios WHERE nombre = ? AND password = ? AND rol = ?";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1, email);
                     pstmt.setString(2, contrasenia);
+                    pstmt.setString(3, modoSeleccionado);
 
                     ResultSet resultSet = pstmt.executeQuery();
 
@@ -47,7 +48,7 @@ public class Login extends Conexion {
                             JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso! Bienvenido " + email);
 
                             // Abrir la ventana dependiendo del modo de registro
-                            if (rol.equals("Administrador")) {
+                            if (rol.equals("administrador")) {
                                 JFrame frame = new JFrame("Admin");
                                 frame.setContentPane(new Login().loginsito);
                                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +58,7 @@ public class Login extends Conexion {
                                 frame.pack();
                                 frame.setVisible(true);
 
-                            } else if (rol.equals("Usuario")) {
+                            } else if (rol.equals("usuario")) {
                                 JFrame frame = new JFrame("User");
                                 frame.setContentPane(new Login().loginsito);
                                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
