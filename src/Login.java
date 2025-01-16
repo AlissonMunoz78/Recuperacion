@@ -50,13 +50,18 @@ public class Login extends Conexion {
                             // Abrir la ventana dependiendo del modo de registro
                             if (rol.equals("administrador")) {
                                 JFrame frame = new JFrame("Admin");
-                                frame.setContentPane(new Login().loginsito);
+                                frame.setContentPane(new menu_admin().menusito);
                                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                 frame.setSize(500, 300);
                                 frame.setPreferredSize(new Dimension(300, 300));
                                 frame.setLocationRelativeTo(null);
                                 frame.pack();
                                 frame.setVisible(true);
+
+                                JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(loginsito);
+                                loguinFrame.dispose();
+
+
 
                             } else if (rol.equals("usuario")) {
                                 JFrame frame = new JFrame("User");
@@ -67,6 +72,9 @@ public class Login extends Conexion {
                                 frame.setLocationRelativeTo(null);
                                 frame.pack();
                                 frame.setVisible(true);
+
+                                JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(loginsito);
+                                loguinFrame.dispose();
                             }
 
                         } else {
