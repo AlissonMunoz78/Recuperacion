@@ -12,11 +12,11 @@ public class menu_admin extends Conexion{
         visulizarProductosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Visualizar Productos");
-                frame.setContentPane(new Login().loginsito);
+                JFrame frame = new JFrame("Visualizar");
+                frame.setContentPane(new Ver_Admin().visualito);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(500, 300);
-                frame.setPreferredSize(new Dimension(300, 300));
+                frame.setPreferredSize(new Dimension(900, 400));
                 frame.setLocationRelativeTo(null);
                 frame.pack();
                 frame.setVisible(true);
@@ -29,7 +29,7 @@ public class menu_admin extends Conexion{
         agregarProductosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Agregar Productos");
+                JFrame frame = new JFrame("Agregar");
                 frame.setContentPane(new Agregar_Admin().agregarsito);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(500, 300);
