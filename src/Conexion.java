@@ -1,7 +1,6 @@
-
-import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
 
@@ -10,12 +9,7 @@ public class Conexion {
     String user = "u10rnbplu9w30o4e";
     String password = "rO6gsFKOdP4zWEVECj2s";
 
-    public void conectar() {
-        try (Connection conexionMysql = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Conectado a la base de datos");
-        } catch (Exception e) {
-            System.out.println("Error de conexion: " + e.getMessage());
-            e.printStackTrace();
-        }
+    public Connection conectar() throws SQLException {
+        return DriverManager.getConnection(url, user, password);
     }
 }
