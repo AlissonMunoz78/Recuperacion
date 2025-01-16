@@ -11,37 +11,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Login {
+public class Login extends Conexion{
     public JButton iniciarButton;
     public JPanel loginsito;
-    private JTextField textField1;
-    private JPasswordField passwordField1;
-    private JComboBox comboBox1;
+    public JTextField textField1;
+    public JPasswordField passwordField1;
+    public JComboBox comboBox1;
+    public JLabel Usuario;
+    public JLabel Contrasenia;
+    public JLabel Rol;
 
     public Login() {
         iniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                // Esta es la conexion a la nube de la base de datos
-                String url = "jdbc:mysql://u10rnbplu9w30o4e:rO6gsFKOdP4zWEVECj2s@bi4wakzvsov6sbbmptih-mysql.services.clever-cloud.com:3306/bi4wakzvsov6sbbmptih";
-                String user = "u10rnbplu9w30o4e";
-                String password = "rO6gsFKOdP4zWEVECj2s";
-
-
-
-
-
-
-
-                JFrame frame = new JFrame("Alisson");
-                frame.setContentPane(new Login().loginsito);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setSize(500, 300);
-                frame.setPreferredSize(new Dimension(300, 300));
-                frame.setLocationRelativeTo(null);
-                frame.pack();
-                frame.setVisible(true);
 
             }
         });
