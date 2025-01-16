@@ -14,6 +14,9 @@ import java.sql.ResultSet;
 public class Login {
     public JButton iniciarButton;
     public JPanel loginsito;
+    private JTextField textField1;
+    private JPasswordField passwordField1;
+    private JComboBox comboBox1;
 
     public Login() {
         iniciarButton.addActionListener(new ActionListener() {
