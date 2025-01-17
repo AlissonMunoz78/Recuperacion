@@ -15,6 +15,7 @@ public class VentanaUsuario extends Conexion {
     public JLabel verstocks;
     public JButton productosButton;
     public JButton regresarButton;
+    public JLabel verProductos;
 
 
     // Logica para el stock menor o igual a 20
@@ -67,7 +68,7 @@ public class VentanaUsuario extends Conexion {
                     }
                     resultados.append("</html>");
 
-                    verstocks.setText(resultados.toString());
+                    verProductos.setText(resultados.toString());
 
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error en la base de datos: " + ex.getMessage());
