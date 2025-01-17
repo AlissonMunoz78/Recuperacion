@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 //Mateo Cardenas
 public class VentanaUsuario extends JFrame{
 
-    private JTabbedPane tabbedPane1;
-    private JPanel panelusuario;
-    private JTextArea textver1;
-    private JButton VERPRODUCTOSButton;
-    private JTextArea textmostrar2;
-    private JButton VERSTOCKButton;
+    public JTabbedPane tabbedPane1;
+    public JPanel panelusuario;
+    public JTextArea textver1;
+    public JButton VERPRODUCTOSButton;
+    public JTextArea textmostrar2;
+    public JButton VERSTOCKButton;
 
     public VentanaUsuario() {
         this.setTitle("USUARIO");

@@ -65,7 +65,7 @@ public class Login extends Conexion {
 
                             } else if (rol.equals("usuario")) {
                                 JFrame frame = new JFrame("User");
-                                frame.setContentPane(new Login().loginsito);
+                                frame.setContentPane(new VentanaUsuario().panelusuario);
                                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                 frame.setSize(500, 300);
                                 frame.setPreferredSize(new Dimension(300, 300));
