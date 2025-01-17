@@ -15,6 +15,11 @@ public class Agregar_Admin extends Conexion {
     public JButton regresarButton;
     public JPanel agregarsito;
     public JTabbedPane tabbedPane1;
+    private JButton regresarButton1;
+    private JButton agregarButton1;
+    private JPasswordField passwordField1;
+    private JTextField textField1;
+    private JComboBox comboBox1;
 
     public Agregar_Admin() {
         agregarButton.addActionListener(new ActionListener() {
@@ -77,5 +82,53 @@ public class Agregar_Admin extends Conexion {
 
             }
         });
+
+        agregarButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregarUsuario();
+            }
+        });
+
+        regresarButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new VentanaUsuario();
+            }
+        });
+    }
+
+    private void agregarUsuario() {
+        String usuario = textField1.getText();
+        String passArray = new String(passwordField1.getPassword());
+        String password = passArray;
+
+        if (usuario.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+            return;
+        }
+
+        try (Connection conn = Conexion.getConexion()) {
+            if (conn != null) {
+                String sql = "INSERT INTO usuarios (usuario, password) VALUES (?, ?)";
+                try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                    ps.setString(1, usuario);
+                    ps.setString(2, password);
+                    ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "¡Usuario registrado con éxito!");
+                    textField1.setText("");
+                    passwordField1.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al registrar usuario: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        new Agregar_Admin();
     }
 }
