@@ -13,8 +13,8 @@ public class VentanaUsuario extends Conexion {
     public JButton verStockButton;
     public JButton regresarButton2;
     public JLabel verstocks;
-    private JButton productosButton;
-    private JButton regresarButton;
+    public JButton productosButton;
+    public JButton regresarButton;
 
 
     // Logica para el stock menor o igual a 20
@@ -48,25 +48,6 @@ public class VentanaUsuario extends Conexion {
             }
         });
 
-
-        regresarButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                JFrame frame = new JFrame("LOGIN");
-                frame.setContentPane(new Login().loginsito);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setSize(500, 300);
-                frame.setPreferredSize(new Dimension(300, 300));
-                frame.setLocationRelativeTo(null);
-                frame.pack();
-                frame.setVisible(true);
-
-                JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(panleusuario);
-                loguinFrame.dispose();
-
-            }
-        });
         productosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +68,7 @@ public class VentanaUsuario extends Conexion {
                     resultados.append("</html>");
 
                     verstocks.setText(resultados.toString());
+
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error en la base de datos: " + ex.getMessage());
                     ex.printStackTrace();
@@ -97,8 +79,9 @@ public class VentanaUsuario extends Conexion {
         regresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("MENU PRINCIPAL");
-                frame.setContentPane(new MenuPrincipal().menuPanel);
+
+                JFrame frame = new JFrame("LOGIN");
+                frame.setContentPane(new Login().loginsito);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(500, 300);
                 frame.setPreferredSize(new Dimension(300, 300));
@@ -106,8 +89,27 @@ public class VentanaUsuario extends Conexion {
                 frame.pack();
                 frame.setVisible(true);
 
-                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(Jpanel);
-                currentFrame.dispose();
+                JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(panleusuario);
+                loguinFrame.dispose();
+            }
+        });
+
+        regresarButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JFrame frame = new JFrame("LOGIN");
+                frame.setContentPane(new Login().loginsito);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(500, 300);
+                frame.setPreferredSize(new Dimension(300, 300));
+                frame.setLocationRelativeTo(null);
+                frame.pack();
+                frame.setVisible(true);
+
+                JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(panleusuario);
+                loguinFrame.dispose();
+
             }
         });
     }
