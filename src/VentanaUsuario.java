@@ -78,6 +78,7 @@ public class VentanaUsuario extends Conexion {
                     verProductos.setText(resultados.toString());
 
                 } catch (SQLException ex) {
+                    // Manejo de errores de base de datos
                     JOptionPane.showMessageDialog(null, "Error en la base de datos: " + ex.getMessage());
                     ex.printStackTrace();
                 }
