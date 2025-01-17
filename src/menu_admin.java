@@ -33,7 +33,7 @@ public class menu_admin extends Conexion{
                 frame.setContentPane(new Agregar_Admin().agregarsito);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(500, 300);
-                frame.setPreferredSize(new Dimension(300, 300));
+                frame.setPreferredSize(new Dimension(500, 300));
                 frame.setLocationRelativeTo(null);
                 frame.pack();
                 frame.setVisible(true);
