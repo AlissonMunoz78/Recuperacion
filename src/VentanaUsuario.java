@@ -1,110 +1,71 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-//Mateo Cardenas
-public class VentanaUsuario extends JFrame{
-
+public class VentanaUsuario extends Conexion {
     public JTabbedPane tabbedPane1;
-    public JPanel panelusuario;
-    public JTextArea textver1;
-    public JButton VERPRODUCTOSButton;
-    public JTextArea textmostrar2;
-    public JButton VERSTOCKButton;
+    public JPanel panleusuario;
+    public JButton verStockButton;
+    public JButton regresarButton2;
+    public JLabel verstocks;
 
+
+    // Logica para el stock menor o igual a 20
     public VentanaUsuario() {
-        this.setTitle("USUARIO");
-        this.setSize(600, 400);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        verStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        tabbedPane1 = new JTabbedPane();
+                try (Connection conn = conectar()) {
+                    String query = "SELECT * FROM Productos WHERE stock <= 20";
+                    PreparedStatement statement = conn.prepareStatement(query);
+                    ResultSet rs = statement.executeQuery();
 
-        JPanel panelVerProductos = new JPanel();
-        textver1 = new JTextArea(10, 40);
-        VERPRODUCTOSButton = new JButton("Ver Productos");
+                    StringBuilder resultados = new StringBuilder("<html>");
+                    while (rs.next()) {
+                        resultados.append("ID: ").append(rs.getInt("id_producto"))
+                                .append(", Nombre: ").append(rs.getString("nombre"))
+                                .append(", Descripción: ").append(rs.getString("descripcion"))
+                                .append(", Precio: ").append(rs.getDouble("precio"))
+                                .append(", Stock: ").append(rs.getInt("stock"))
+                                .append("<br>");
+                    }
+                    resultados.append("</html>");
 
-        panelVerProductos.add(new JScrollPane(textver1));
-        panelVerProductos.add(VERPRODUCTOSButton);
+                    // Mostrar resultados
+                    verstocks.setText(resultados.toString());
 
-        JPanel panelVerStock = new JPanel();
-        textmostrar2 = new JTextArea(10, 40);
-        VERSTOCKButton = new JButton("Ver Productos ");
-
-        panelVerStock.add(new JScrollPane(textmostrar2)); // Agregar el área de texto con scroll
-        panelVerStock.add(VERSTOCKButton);
-
-        tabbedPane1.addTab("Ver Productos", panelVerProductos);
-        tabbedPane1.addTab("Productos", panelVerStock);
-
-        panelusuario = new JPanel();
-        panelusuario.add(tabbedPane1);
-
-        this.add(panelusuario);
-
-        this.setVisible(true);
-
-        VERPRODUCTOSButton.addActionListener(e -> verProductos());
-        VERSTOCKButton.addActionListener(e -> verStock());
-    }
-
-    private void verProductos() {
-        try (Connection conn = Conexion.getConexion()) {
-            if (conn != null) {
-                String sql = "SELECT nombre, descripcion, precio FROM productos";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
-                textver1.setText("");
-                while (rs.next()) {
-                    String nombre = rs.getString("nombre");
-                    String descripcion = rs.getString("descripcion");
-                    double precio = rs.getDouble("precio");
-
-                    textver1.append("Producto: " + nombre + "\n");
-                    textver1.append("Descripción: " + descripcion + "\n");
-                    textver1.append("Precio: " + precio + "\n");
-                    textver1.append("-------------------------\n");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error en la base de datos: " + ex.getMessage());
+                    ex.printStackTrace();
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+        });
 
 
-    private void verStock() {
-        try (Connection conn = Conexion.getConexion()) {
-            if (conn != null) {
-                String sql = "SELECT nombre, descripcion, precio, stock FROM productos WHERE stock <= 20";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
+        // En este caso le manda al login
+        regresarButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-                textmostrar2.setText("");
+                JFrame frame = new JFrame("LOGIN");
+                frame.setContentPane(new Login().loginsito);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(500, 300);
+                frame.setPreferredSize(new Dimension(300, 300));
+                frame.setLocationRelativeTo(null);
+                frame.pack();
+                frame.setVisible(true);
 
-                while (rs.next()) {
-                    String nombre = rs.getString("nombre");
-                    String descripcion = rs.getString("descripcion");
-                    double precio = rs.getDouble("precio");
-                    int stock = rs.getInt("stock");
+                JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(panleusuario);
+                loguinFrame.dispose();
 
-
-                    textmostrar2.append("Producto: " + nombre + "\n");
-                    textmostrar2.append("Descripción: " + descripcion + "\n");
-                    textmostrar2.append("Precio: " + precio + "\n");
-                    textmostrar2.append("Stock: " + stock + "\n");
-                    textmostrar2.append("-------------------------\n");
-                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
-
-
 }
-
-
-
-
-
