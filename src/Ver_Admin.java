@@ -1,6 +1,7 @@
 //Alisson Muñoz
 //Mateo Cardenas
 //Richard Padilla
+//
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,7 +97,7 @@ public class Ver_Admin extends Conexion {
                 verAdmin.dispose();
             }
         });
-
+        // Acción al hacer clic en el botón "regresarButton" para regresar al menú administrador
         regresarbutton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
