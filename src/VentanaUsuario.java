@@ -30,6 +30,7 @@ public class VentanaUsuario extends Conexion {
             public void actionPerformed(ActionEvent e) {
 
                 try (Connection conn = conectar()) {
+                    // Consulta SQL para obtener productos con stock bajo
                     String query = "SELECT * FROM Productos WHERE stock <= 20";
                     PreparedStatement statement = conn.prepareStatement(query);
                     ResultSet rs = statement.executeQuery();
@@ -53,6 +54,7 @@ public class VentanaUsuario extends Conexion {
                 }
             }
         });
+        // Acción al hacer clic en el botón "productosButton" para mostrar todos los productos
 
         productosButton.addActionListener(new ActionListener() {
             @Override
@@ -81,6 +83,7 @@ public class VentanaUsuario extends Conexion {
                 }
             }
         });
+        // Acción al hacer clic en el botón "regresarButton" para regresar al login
 
         regresarButton.addActionListener(new ActionListener() {
             @Override
