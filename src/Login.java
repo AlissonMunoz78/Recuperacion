@@ -1,3 +1,7 @@
+//Alisson Muñoz
+//Mateo Cardenas
+//Richard Padilla
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,16 +27,20 @@ public class Login extends Conexion {
         comboBox1.addItem("administrador");
         comboBox1.addItem("usuario");
 
+
+        // Acción que se ejecuta cuando se hace clic en el botón "iniciarButton"
         iniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                // Obtener los valores ingresados en los campos de texto y contraseña
                 String email = textField1.getText();
                 String contrasenia = new String(passwordField1.getPassword());
                 String modoSeleccionado = (String) comboBox1.getSelectedItem();
 
                 try (Connection conn = conectar()) { // Usamos el método conectar() de la clase Conexion
 
+                    // Consulta SQL para verificar si el usuario y contraseña coinciden con el rol seleccionado
                     String sql = "SELECT rol FROM Usuarios WHERE nombre = ? AND password = ? AND rol = ?";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1, email);
@@ -58,6 +66,7 @@ public class Login extends Conexion {
                                 frame.pack();
                                 frame.setVisible(true);
 
+                                // Cerrar la ventana de login
                                 JFrame loguinFrame = (JFrame) SwingUtilities.getWindowAncestor(loginsito);
                                 loguinFrame.dispose();
 
